@@ -128,8 +128,10 @@ export const wedding = {
     diya: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/diya.png",
     petals: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/floating-petals.png",
     frame: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/ornamental-frame.png",
-    social: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/social-card.webp",
+    social: "./og-image.jpg",
   },
+
+  productionUrl: "https://sonali-weds-nayan.vercel.app",
 
   footer: {
     title: "Meet us under the stars",
