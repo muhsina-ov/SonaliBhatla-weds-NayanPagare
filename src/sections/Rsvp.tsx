@@ -42,7 +42,7 @@ export default function Rsvp() {
           <div className="mb-8 text-center">
             <p className="font-display text-xl tracking-wide text-ink/85 sm:text-2xl">
               Please let us know by{" "}
-              <span className="font-semibold text-gold underline decoration-gold/40 underline-offset-4">
+              <span className="font-bold text-ink underline decoration-[#7a4816] underline-offset-4">
                 {wedding.rsvp.deadline}
               </span>
             </p>

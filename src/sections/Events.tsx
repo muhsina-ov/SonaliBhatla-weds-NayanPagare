@@ -35,7 +35,7 @@ export default function Events() {
       <div className="mx-auto grid max-w-5xl gap-10 md:grid-cols-[1.1fr_.9fr] md:items-start">
         <Reveal>
           <article className="border-l border-gold/45 px-7 py-2 text-left sm:px-10">
-            <p className="text-[11px] uppercase tracking-[0.35em] text-gold">
+            <p className="text-[11px] font-medium uppercase tracking-[0.35em] text-[#7a4816]">
               {event.dayLabel}
             </p>
             <p className="font-display mt-2 text-8xl font-medium leading-none text-ink">
@@ -81,18 +81,18 @@ export default function Events() {
         )}
 
         <Reveal delay={0.16} className="flex flex-col gap-3">
-          <p className="text-left text-[11px] uppercase tracking-[0.3em] text-gold">
+          <p className="text-left text-[11px] font-semibold uppercase tracking-[0.3em] text-[#7a4816]">
             Ceremony flow
           </p>
-          <ol className="relative space-y-4 before:absolute before:bottom-5 before:left-[7px] before:top-5 before:w-px before:bg-gold/25">
+          <ol className="relative space-y-4 before:absolute before:bottom-5 before:left-[7px] before:top-5 before:w-px before:bg-[#7a4816]/25">
             {wedding.program.map((item) => (
               <li
                 key={item.name}
                 className="relative flex items-center justify-between gap-4 pl-8 text-sm"
               >
-                <span className="absolute left-0 h-3.5 w-3.5 rounded-full border border-gold/60 bg-[var(--paper)]" />
+                <span className="absolute left-0 h-3.5 w-3.5 rounded-full border border-[#7a4816]/60 bg-[var(--paper)]" />
                 <span className="text-ink/80">{item.name}</span>
-                <span className="font-display tracking-wide text-gold">
+                <span className="font-display text-base font-medium tracking-wide text-ink">
                   {item.time}
                 </span>
               </li>

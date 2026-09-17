@@ -58,7 +58,7 @@ export default function Venue() {
             aria-label={`Open directions to ${wedding.venue.name}`}
           >
             <img
-              src={wedding.assets.environment}
+              src={wedding.assets.venue || wedding.assets.environment}
               alt={wedding.venue.name}
               className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-[cubic-bezier(.16,1,.3,1)] group-hover:scale-[1.03]"
               loading="lazy"

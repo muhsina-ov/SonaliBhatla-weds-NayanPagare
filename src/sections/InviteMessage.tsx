@@ -13,10 +13,10 @@ export default function InviteMessage() {
       <div className="relative mx-auto grid max-w-5xl gap-12 md:grid-cols-[.65fr_1.35fr] md:items-start">
         <Reveal>
           <div className="flex items-center gap-4 md:pt-3">
-          <span className="h-px w-12 bg-gold/50" />
-          <p className="font-display text-sm tracking-[0.28em] text-gold">
-            {wedding.verse.hindi}
-          </p>
+            <span className="h-px w-12 bg-[#7a4816]/45" />
+            <p className="font-display text-base font-semibold tracking-[0.28em] text-[#7a4816]">
+              {wedding.verse.hindi}
+            </p>
           </div>
         </Reveal>
         <div>

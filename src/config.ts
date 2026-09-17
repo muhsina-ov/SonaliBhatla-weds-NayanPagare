@@ -81,8 +81,8 @@ export const wedding = {
       paternalBlessings: {
         title: "With the blessings of his paternal grandparents",
         grandparents: [
-          "Digambar Pagare",
-          "Laxmibai Pagare",
+          "Late Digambar Pagare",
+          "Late Laxmibai Pagare",
         ],
       },
       maternalBlessings: {
@@ -121,6 +121,7 @@ export const wedding = {
     introVideo: "./assets/lotus/intro-journey.mp4",
     sky: "./assets/lotus/sky.webp",
     environment: "./assets/lotus/water-palace.webp",
+    venue: "./assets/venue.jpg",
     barge: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/barge.png",
     couple: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/couple.png",
     mandap: "https://media.invitestory.in/moonlit-lotus-barge/assets/lotus/lotus-mandap.png",

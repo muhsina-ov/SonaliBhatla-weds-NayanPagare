@@ -73,6 +73,21 @@
     color: #07101d;
   }
 
+  .paper-section .section-kicker {
+    color: #7a4816;
+  }
+
+  .paper-section .text-gold {
+    background: none;
+    -webkit-background-clip: unset;
+    background-clip: unset;
+    color: #7a4816;
+  }
+
+  .paper-section .section-rule {
+    background: rgba(122, 72, 22, 0.35);
+  }
+
   .paper-section::before,
   .night-section::before {
     content: "";
