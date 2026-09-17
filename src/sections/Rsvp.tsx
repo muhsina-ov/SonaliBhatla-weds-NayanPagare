@@ -93,15 +93,16 @@ export default function Rsvp() {
                       href={createWhatsAppUrl()}
                       target="_blank"
                       rel="noreferrer"
-                      className="journey-button !mt-0 !text-pearl"
+                      className="group inline-flex items-center justify-center gap-2.5 rounded-xl border-2 border-[#7a4816] bg-[#dfb86c] py-3.5 px-7 text-xs font-bold uppercase tracking-[0.2em] text-[#07101d] shadow-[0_8px_20px_rgba(122,72,22,0.2)] transition-all hover:bg-[#d4a853]"
                     >
-                      <MessageSquareShare size={15} className="mr-2 text-gold" />
+                      <MessageSquareShare size={17} className="text-[#07101d] transition-transform group-hover:scale-110" />
                       <span>Open in WhatsApp</span>
+                      <span className="ml-1 text-sm font-semibold text-[#7a4816]">✦</span>
                     </a>
                     <button
                       type="button"
                       onClick={() => setSubmitted(false)}
-                      className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink/60 transition hover:bg-ink/5"
+                      className="inline-flex items-center gap-2 rounded-xl border-2 border-ink/20 px-5 py-3 text-xs font-semibold uppercase tracking-[0.18em] text-ink/80 transition hover:border-ink/40 hover:bg-ink/5"
                     >
                       Edit RSVP
                     </button>
@@ -211,13 +212,13 @@ export default function Rsvp() {
                   <div className="pt-2">
                     <button
                       type="submit"
-                      className="journey-button !mt-0 w-full justify-center !text-pearl"
+                      className="group flex w-full items-center justify-center gap-2.5 rounded-xl border-2 border-[#7a4816] bg-[#dfb86c] py-4 px-6 text-xs font-bold uppercase tracking-[0.2em] text-[#07101d] shadow-[0_8px_20px_rgba(122,72,22,0.2)] transition-all hover:bg-[#d4a853] hover:shadow-[0_12px_28px_rgba(122,72,22,0.28)] active:scale-[0.99]"
                     >
-                      <MessageSquareShare size={17} className="mr-2 text-gold" />
+                      <MessageSquareShare size={18} className="text-[#07101d] transition-transform group-hover:scale-110" />
                       <span>RSVP via WhatsApp</span>
-                      <span className="journey-button__mark" aria-hidden>✦</span>
+                      <span className="ml-1 text-sm font-semibold text-[#7a4816]">✦</span>
                     </button>
-                    <p className="mt-2.5 text-center text-[11px] text-ink/50">
+                    <p className="mt-2.5 text-center text-[11px] text-ink/60">
                       Tapping will open WhatsApp with your RSVP details pre-filled
                     </p>
                   </div>
