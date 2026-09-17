@@ -13,11 +13,30 @@ import Venue from "../sections/Venue";
 import Rsvp from "../sections/Rsvp";
 import Footer from "../sections/Footer";
 import { wedding } from "../config";
+import { soundManager } from "../lib/soundManager";
 
 export default function Home() {
   const [opened, setOpened] = useState(false);
   const reduceMotion = useReducedMotion();
   const onOpened = useCallback(() => setOpened(true), []);
+
+  useEffect(() => {
+    if (!opened) return;
+    soundManager.play();
+
+    const handleGesture = () => {
+      soundManager.play();
+      window.removeEventListener("pointerdown", handleGesture);
+      window.removeEventListener("keydown", handleGesture);
+    };
+
+    window.addEventListener("pointerdown", handleGesture, { passive: true });
+    window.addEventListener("keydown", handleGesture, { passive: true });
+    return () => {
+      window.removeEventListener("pointerdown", handleGesture);
+      window.removeEventListener("keydown", handleGesture);
+    };
+  }, [opened]);
 
   useEffect(() => {
     if (!opened || reduceMotion) return;
@@ -52,7 +71,7 @@ export default function Home() {
         <Footer />
       </div>
       {opened && <AmbientDetails />}
-      {opened && <MusicPlayer />}
+      <MusicPlayer />
       <IntroJourney onOpened={onOpened} />
     </main>
   );

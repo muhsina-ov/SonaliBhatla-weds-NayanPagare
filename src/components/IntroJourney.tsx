@@ -2,6 +2,7 @@ import { AnimatePresence, motion, useReducedMotion } from "framer-motion";
 import { useEffect, useReducer, useRef, useState } from "react";
 import { wedding } from "../config";
 import { introReducer } from "../lib/introMachine";
+import { soundManager } from "../lib/soundManager";
 
 type Props = {
   onOpened: () => void;
@@ -66,6 +67,7 @@ export default function IntroJourney({ onOpened }: Props) {
   };
 
   const begin = () => {
+    soundManager.play();
     if (reduceMotion) {
       dispatch({ type: "SKIP_MOTION" });
       return;
@@ -205,7 +207,10 @@ export default function IntroJourney({ onOpened }: Props) {
             >
               <button
                 type="button"
-                onClick={() => dispatch({ type: "ENTER" })}
+                onClick={() => {
+                  soundManager.play();
+                  dispatch({ type: "ENTER" });
+                }}
                 className="tap-ripple"
                 aria-label={wedding.intro.enterLabel}
               >
