@@ -32,6 +32,7 @@ export const wedding = {
   rsvp: {
     deadline: "October 3rd, 2026",
     deadlineLabel: "RSVP by Oct 3rd, 2026",
+    whatsappNumber: "",
   },
 
   music: {

@@ -11,16 +11,23 @@ export default function Rsvp() {
   const [message, setMessage] = useState("");
   const [submitted, setSubmitted] = useState(false);
 
+  const createWhatsAppUrl = () => {
+    const status = attending === "yes" ? "Joyfully accepting the invitation! ✨" : "Regretfully declining with warm wishes. 💐";
+    const text = `*Wedding RSVP for Sonali & Nayan*\n\n*Name:* ${name || "Guest"}\n*Attendance:* ${status}\n*Number of Guests:* ${guests}${message ? `\n*Message:* ${message}` : ""}\n\nCan't wait to celebrate!`;
+    const phone = (wedding.rsvp as any).whatsappNumber
+      ? (wedding.rsvp as any).whatsappNumber.replace(/[^0-9]/g, "")
+      : "";
+    return phone
+      ? `https://api.whatsapp.com/send?phone=${phone}&text=${encodeURIComponent(text)}`
+      : `https://api.whatsapp.com/send?text=${encodeURIComponent(text)}`;
+  };
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (!name.trim()) return;
+    const url = createWhatsAppUrl();
+    window.open(url, "_blank", "noopener,noreferrer");
     setSubmitted(true);
-  };
-
-  const createWhatsAppText = () => {
-    const status = attending === "yes" ? "Joyfully accepting the invitation! ✨" : "Regretfully declining with warm wishes. 💐";
-    const text = `*Wedding RSVP for Sonali & Nayan*\n\n*Name:* ${name || "Guest"}\n*Attendance:* ${status}\n*Number of Guests:* ${guests}${message ? `\n*Message:* ${message}` : ""}\n\nCan't wait to celebrate!`;
-    return encodeURIComponent(text);
   };
 
   return (
@@ -49,6 +56,9 @@ export default function Rsvp() {
             <p className="mt-2 text-xs uppercase tracking-[0.2em] text-ink/50">
               Saturday, 24 October 2026 · Versailles Convention Centre
             </p>
+            <p className="mt-1 text-xs font-medium tracking-wide text-[#7a4816]">
+              RSVP via WhatsApp
+            </p>
           </div>
         </Reveal>
 
@@ -71,26 +81,29 @@ export default function Rsvp() {
                   </h3>
                   <p className="mt-2 text-sm leading-relaxed text-ink/65">
                     {attending === "yes"
-                      ? "Your response has been noted with joy. We cannot wait to celebrate with you under the stars!"
-                      : "Thank you for letting us know. Your love and blessings mean the world to us."}
+                      ? "Your RSVP has been prepared for WhatsApp. We cannot wait to celebrate with you under the stars!"
+                      : "Your RSVP has been prepared for WhatsApp. Thank you for letting us know."}
+                  </p>
+                  <p className="mt-1 text-xs text-ink/50">
+                    If WhatsApp did not open automatically, tap below to send:
                   </p>
 
                   <div className="mt-8 flex flex-wrap justify-center gap-3">
                     <a
-                      href={`https://api.whatsapp.com/send?text=${createWhatsAppText()}`}
+                      href={createWhatsAppUrl()}
                       target="_blank"
                       rel="noreferrer"
-                      className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink transition hover:bg-gold/20"
+                      className="journey-button !mt-0 !text-pearl"
                     >
-                      <MessageSquareShare size={14} className="text-gold" />
-                      Send Copy to WhatsApp
+                      <MessageSquareShare size={15} className="mr-2 text-gold" />
+                      <span>Open in WhatsApp</span>
                     </a>
                     <button
                       type="button"
                       onClick={() => setSubmitted(false)}
-                      className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink/60 transition hover:bg-ink/5"
+                      className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink/60 transition hover:bg-ink/5"
                     >
-                      Update RSVP
+                      Edit RSVP
                     </button>
                   </div>
                 </motion.div>
@@ -194,24 +207,19 @@ export default function Rsvp() {
                     />
                   </div>
 
-                  {/* Action Buttons */}
-                  <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                  {/* WhatsApp RSVP Action */}
+                  <div className="pt-2">
                     <button
                       type="submit"
-                      className="journey-button !mt-0 flex-1 justify-center !text-pearl"
+                      className="journey-button !mt-0 w-full justify-center !text-pearl"
                     >
-                      <span>Submit RSVP</span>
+                      <MessageSquareShare size={17} className="mr-2 text-gold" />
+                      <span>RSVP via WhatsApp</span>
                       <span className="journey-button__mark" aria-hidden>✦</span>
                     </button>
-                    <a
-                      href={`https://api.whatsapp.com/send?text=${createWhatsAppText()}`}
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/50 bg-white/80 px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-ink transition hover:bg-gold/10"
-                    >
-                      <MessageSquareShare size={15} className="text-gold" />
-                      <span>RSVP via WhatsApp</span>
-                    </a>
+                    <p className="mt-2.5 text-center text-[11px] text-ink/50">
+                      Tapping will open WhatsApp with your RSVP details pre-filled
+                    </p>
                   </div>
                 </form>
               )}
