@@ -131,7 +131,7 @@ export const wedding = {
     social: "./og-image.jpg",
   },
 
-  productionUrl: "https://sonali-weds-nayan.vercel.app",
+  productionUrl: "https://sonalibhatla-weds-nayanpagare.invitingyou.top",
 
   footer: {
     title: "Meet us under the stars",
