@@ -1,0 +1,243 @@
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { CheckCircle2, Heart, Send, Calendar, MessageSquareShare } from "lucide-react";
+import Reveal, { SectionHeading } from "../components/Reveal";
+import { wedding, googleCalendarUrl, downloadICS } from "../config";
+
+export default function Rsvp() {
+  const [name, setName] = useState("");
+  const [attending, setAttending] = useState<"yes" | "no">("yes");
+  const [guests, setGuests] = useState("1");
+  const [message, setMessage] = useState("");
+  const [submitted, setSubmitted] = useState(false);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!name.trim()) return;
+    setSubmitted(true);
+  };
+
+  const createWhatsAppText = () => {
+    const status = attending === "yes" ? "Joyfully accepting the invitation! ✨" : "Regretfully declining with warm wishes. 💐";
+    const text = `*Wedding RSVP for Sonali & Nayan*\n\n*Name:* ${name || "Guest"}\n*Attendance:* ${status}\n*Number of Guests:* ${guests}${message ? `\n*Message:* ${message}` : ""}\n\nCan't wait to celebrate!`;
+    return encodeURIComponent(text);
+  };
+
+  return (
+    <section id="rsvp" className="paper-section relative overflow-hidden px-6 py-24 sm:py-36">
+      <img
+        src={wedding.assets.mandap}
+        alt=""
+        className="pointer-events-none absolute -right-20 -top-10 w-96 max-w-none opacity-[0.06]"
+      />
+      <div className="[&_.section-heading_h2]:!text-ink">
+        <SectionHeading
+          kicker={`RSVP Deadline · ${wedding.rsvp.deadline}`}
+          title="Will You Join Our Celebration?"
+        />
+      </div>
+
+      <div className="relative mx-auto max-w-2xl">
+        <Reveal>
+          <div className="mb-8 text-center">
+            <p className="font-display text-xl tracking-wide text-ink/85 sm:text-2xl">
+              Please let us know by{" "}
+              <span className="font-semibold text-gold underline decoration-gold/40 underline-offset-4">
+                {wedding.rsvp.deadline}
+              </span>
+            </p>
+            <p className="mt-2 text-xs uppercase tracking-[0.2em] text-ink/50">
+              Saturday, 24 October 2026 · Versailles Convention Centre
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="relative rounded-2xl border border-gold/30 bg-white/70 p-7 shadow-[0_20px_50px_rgba(7,16,29,0.08)] backdrop-blur-md sm:p-10">
+            <AnimatePresence mode="wait">
+              {submitted ? (
+                <motion.div
+                  key="submitted"
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="py-10 text-center"
+                >
+                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-gold/15 text-gold">
+                    <CheckCircle2 size={36} />
+                  </div>
+                  <h3 className="font-display mt-5 text-3xl font-medium text-ink">
+                    Thank You, {name}!
+                  </h3>
+                  <p className="mt-2 text-sm leading-relaxed text-ink/65">
+                    {attending === "yes"
+                      ? "Your response has been noted with joy. We cannot wait to celebrate with you under the stars!"
+                      : "Thank you for letting us know. Your love and blessings mean the world to us."}
+                  </p>
+
+                  <div className="mt-8 flex flex-wrap justify-center gap-3">
+                    <a
+                      href={`https://api.whatsapp.com/send?text=${createWhatsAppText()}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center gap-2 rounded-full border border-gold/40 bg-gold/10 px-5 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink transition hover:bg-gold/20"
+                    >
+                      <MessageSquareShare size={14} className="text-gold" />
+                      Send Copy to WhatsApp
+                    </a>
+                    <button
+                      type="button"
+                      onClick={() => setSubmitted(false)}
+                      className="inline-flex items-center gap-2 rounded-full border border-ink/20 px-4 py-2.5 text-xs font-medium uppercase tracking-[0.18em] text-ink/60 transition hover:bg-ink/5"
+                    >
+                      Update RSVP
+                    </button>
+                  </div>
+                </motion.div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {/* Attendance Toggle */}
+                  <div className="grid grid-cols-2 gap-3">
+                    <button
+                      type="button"
+                      onClick={() => setAttending("yes")}
+                      className={`flex flex-col items-center gap-1.5 rounded-xl border py-4 px-3 text-center transition-all ${
+                        attending === "yes"
+                          ? "border-gold bg-gold/10 text-ink shadow-sm ring-1 ring-gold/40"
+                          : "border-ink/15 bg-white/40 text-ink/60 hover:bg-white/70"
+                      }`}
+                    >
+                      <Heart
+                        size={18}
+                        className={attending === "yes" ? "fill-gold text-gold" : "text-ink/40"}
+                      />
+                      <span className="font-display text-base font-medium">Joyfully Accepts</span>
+                      <span className="text-[10px] uppercase tracking-wider text-ink/50">Attending with pleasure</span>
+                    </button>
+
+                    <button
+                      type="button"
+                      onClick={() => setAttending("no")}
+                      className={`flex flex-col items-center gap-1.5 rounded-xl border py-4 px-3 text-center transition-all ${
+                        attending === "no"
+                          ? "border-ink/50 bg-ink/5 text-ink shadow-sm ring-1 ring-ink/30"
+                          : "border-ink/15 bg-white/40 text-ink/60 hover:bg-white/70"
+                      }`}
+                    >
+                      <Send
+                        size={18}
+                        className={attending === "no" ? "text-ink/80" : "text-ink/40"}
+                      />
+                      <span className="font-display text-base font-medium">Regretfully Declines</span>
+                      <span className="text-[10px] uppercase tracking-wider text-ink/50">Wishing from afar</span>
+                    </button>
+                  </div>
+
+                  {/* Name Input */}
+                  <div>
+                    <label
+                      htmlFor="rsvp-name"
+                      className="block text-[11px] font-medium uppercase tracking-[0.2em] text-ink/70"
+                    >
+                      Your Full Name <span className="text-red-500">*</span>
+                    </label>
+                    <input
+                      id="rsvp-name"
+                      type="text"
+                      required
+                      value={name}
+                      onChange={(e) => setName(e.target.value)}
+                      placeholder="e.g. Priyanshu Sharma"
+                      className="mt-1.5 w-full rounded-xl border border-ink/20 bg-white/80 px-4 py-3 text-sm text-ink placeholder:text-ink/35 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+                    />
+                  </div>
+
+                  {/* Guest Count */}
+                  {attending === "yes" && (
+                    <div>
+                      <label
+                        htmlFor="rsvp-guests"
+                        className="block text-[11px] font-medium uppercase tracking-[0.2em] text-ink/70"
+                      >
+                        Total Attending Guests
+                      </label>
+                      <select
+                        id="rsvp-guests"
+                        value={guests}
+                        onChange={(e) => setGuests(e.target.value)}
+                        className="mt-1.5 w-full rounded-xl border border-ink/20 bg-white/80 px-4 py-3 text-sm text-ink focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+                      >
+                        <option value="1">1 Guest</option>
+                        <option value="2">2 Guests</option>
+                        <option value="3">3 Guests</option>
+                        <option value="4">4 Guests</option>
+                        <option value="5+">5+ Guests</option>
+                      </select>
+                    </div>
+                  )}
+
+                  {/* Wishes / Note */}
+                  <div>
+                    <label
+                      htmlFor="rsvp-message"
+                      className="block text-[11px] font-medium uppercase tracking-[0.2em] text-ink/70"
+                    >
+                      Message or Dietary Requirements
+                    </label>
+                    <textarea
+                      id="rsvp-message"
+                      rows={3}
+                      value={message}
+                      onChange={(e) => setMessage(e.target.value)}
+                      placeholder="Special wishes for Sonali & Nayan, dietary needs..."
+                      className="mt-1.5 w-full resize-none rounded-xl border border-ink/20 bg-white/80 px-4 py-3 text-sm text-ink placeholder:text-ink/35 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
+                    />
+                  </div>
+
+                  {/* Action Buttons */}
+                  <div className="flex flex-col gap-3 pt-2 sm:flex-row">
+                    <button
+                      type="submit"
+                      className="journey-button !mt-0 flex-1 justify-center !text-pearl"
+                    >
+                      <span>Submit RSVP</span>
+                      <span className="journey-button__mark" aria-hidden>✦</span>
+                    </button>
+                    <a
+                      href={`https://api.whatsapp.com/send?text=${createWhatsAppText()}`}
+                      target="_blank"
+                      rel="noreferrer"
+                      className="inline-flex items-center justify-center gap-2 rounded-full border border-gold/50 bg-white/80 px-5 py-3 text-xs font-medium uppercase tracking-[0.18em] text-ink transition hover:bg-gold/10"
+                    >
+                      <MessageSquareShare size={15} className="text-gold" />
+                      <span>RSVP via WhatsApp</span>
+                    </a>
+                  </div>
+                </form>
+              )}
+            </AnimatePresence>
+
+            <div className="mt-8 flex flex-wrap items-center justify-center gap-6 border-t border-ink/10 pt-6 text-xs text-ink/60">
+              <a
+                href={googleCalendarUrl()}
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-1.5 transition-colors hover:text-gold"
+              >
+                <Calendar size={13} />
+                <span>Add to Google Calendar</span>
+              </a>
+              <button
+                type="button"
+                onClick={downloadICS}
+                className="flex items-center gap-1.5 transition-colors hover:text-gold"
+              >
+                <span>Download .ics file</span>
+              </button>
+            </div>
+          </div>
+        </Reveal>
+      </div>
+    </section>
+  );
+}
