@@ -1,4 +1,5 @@
 export const wedding = {
+  ganesh: "॥ श्री गणेशाय नमः ॥",
   bride: "Sonali",
   groom: "Nayan",
   brideFull: "Sonali Bhatla",

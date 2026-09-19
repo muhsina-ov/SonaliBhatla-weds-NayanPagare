@@ -150,6 +150,19 @@ export default function IntroJourney({ onOpened }: Props) {
 
           {state.stage === "landing" && (
             <motion.div
+              className="pointer-events-none absolute inset-x-0 top-7 z-30 flex justify-center px-4 text-center sm:top-10"
+              initial={reduceMotion ? false : { opacity: 0, y: -12 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+            >
+              <p className="font-display text-xs font-semibold tracking-[0.26em] text-[#dfb86c] drop-shadow-[0_2px_12px_rgba(0,0,0,0.85)] sm:text-sm">
+                {wedding.ganesh}
+              </p>
+            </motion.div>
+          )}
+
+          {state.stage === "landing" && (
+            <motion.div
               className="absolute inset-x-0 bottom-[6vh] z-30 mx-auto flex max-w-lg flex-col items-center px-8 text-center text-pearl [text-shadow:0_2px_18px_rgba(4,12,29,.9)]"
               initial={reduceMotion ? false : { opacity: 0, y: 26 }}
               animate={{ opacity: 1, y: 0 }}

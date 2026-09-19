@@ -27,6 +27,7 @@ export default function LotusParallaxScene() {
       <div className="new-hero__grain" aria-hidden />
 
       <motion.div className="new-hero__copy" initial={reduceMotion ? false : { opacity: 0, y: 30 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 1.15, ease: [0.16, 1, 0.3, 1] }}>
+        <p className="new-hero__ganesh">{wedding.ganesh}</p>
         <p className="new-hero__eyebrow">Together with their families</p>
         <h1 className="new-hero__names"><span>{wedding.bride}</span><i>and</i><span>{wedding.groom}</span></h1>
         <div className="new-hero__details">

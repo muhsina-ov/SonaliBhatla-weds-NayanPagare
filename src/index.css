@@ -276,6 +276,7 @@
 .new-hero__wash { position:absolute; inset:0; background:linear-gradient(90deg,rgba(5,12,23,.96),rgba(5,12,23,.7) 36%,rgba(5,12,23,.1) 72%),linear-gradient(180deg,rgba(5,12,23,.2),transparent 48%,rgba(5,12,23,.76)); }
 .new-hero__grain { position:absolute; inset:0; opacity:.13; pointer-events:none; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.55'/%3E%3C/svg%3E"); mix-blend-mode:soft-light; }
 .new-hero__copy { position:relative; z-index:5; min-height:100dvh; width:min(46rem,56vw); display:flex; flex-direction:column; justify-content:center; padding:8rem 0 8rem clamp(2rem,7vw,7rem); }
+.new-hero__ganesh { margin-bottom:1.4rem; font-family:"Cormorant Garamond","Nirmala UI","Mangal",serif; font-size:clamp(1.1rem,2vw,1.4rem); font-weight:600; letter-spacing:.22em; color:#dfb86c; text-shadow:0 2px 14px rgba(0,0,0,.7); }
 .new-hero__eyebrow { margin-bottom:1.8rem; font-size:.62rem; font-weight:500; letter-spacing:.34em; text-transform:uppercase; color:#e6c68a; }
 .new-hero__names { display:flex; flex-direction:column; font-family:"Cormorant Garamond",serif; font-size:clamp(5.5rem,10.4vw,10rem); font-weight:500; letter-spacing:-.075em; line-height:.58; color:#f4efe8; text-shadow:0 12px 50px rgba(0,0,0,.32); }
 .new-hero__names i { align-self:center; margin:.36em 0 .25em; font-size:.19em; font-weight:400; letter-spacing:.04em; color:#e6c68a; }
@@ -292,6 +293,7 @@
   .new-hero__landscape { object-position:58% center; }
   .new-hero__wash { background:linear-gradient(180deg,rgba(5,12,23,.82),rgba(5,12,23,.16) 48%,rgba(5,12,23,.92)); }
   .new-hero__copy { width:100%; min-height:auto; justify-content:flex-start; align-items:center; padding:10vh 1.5rem 0; text-align:center; }
+  .new-hero__ganesh { margin-bottom:1.1rem; font-size:1.05rem; letter-spacing:.18em; }
   .new-hero__eyebrow { margin-bottom:1.25rem; font-size:.55rem; }
   .new-hero__names { font-size:clamp(4.6rem,23vw,6rem); line-height:.62; }
   .new-hero__details { margin-top:2rem; width:min(21rem,92vw); font-size:.55rem; letter-spacing:.14em; }
