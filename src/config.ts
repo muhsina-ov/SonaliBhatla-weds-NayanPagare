@@ -31,8 +31,8 @@ export const wedding = {
   yearLabel: "2026",
 
   rsvp: {
-    deadline: "October 3rd, 2026",
-    deadlineLabel: "RSVP by Oct 3rd, 2026",
+    deadline: "October 8th, 2026",
+    deadlineLabel: "RSVP by Oct 8th, 2026",
     whatsappNumber: "",
   },
 
@@ -63,18 +63,22 @@ export const wedding = {
       name: "Sonali Bhatla",
       parents: "Anita Bhatla & Sunil Bhatla",
       paternalBlessings: {
-        title: "With the blessings of her paternal grandparents",
+        title: "With the Blessings of Her Paternal Grandparents",
         grandparents: [
           "Cdr. Shadi Lal Bhatla (Retd. IN)",
-          "Late Shila Rani Bhatla",
+          "and Late Shila Rani Bhatla",
         ],
       },
       maternalBlessings: {
-        title: "And her maternal grandparents",
+        title: "And Her Maternal Grandparents",
         grandparents: [
-          "Late Krishna Lal Katiyal",
-          "Shrimati Shakuntala Katiyal",
+          "Late Krishan Lal Katiyal",
+          "and Shrimati Shakuntala Katiyal",
         ],
+      },
+      withLove: {
+        title: "With love from her Brother, Bhabhi & Nephew",
+        names: "Ankit, Anmoal & Avyaansh",
       },
     },
     groom: {

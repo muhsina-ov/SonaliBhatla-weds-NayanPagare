@@ -57,6 +57,18 @@ export default function Couple() {
               </p>
             ))}
           </div>
+
+          {/* With love — Brother, Bhabhi & Nephew */}
+          {(bride as any).withLove && (
+            <div className="mt-5 space-y-1">
+              <p className="text-[11px] font-medium uppercase tracking-[0.22em] text-champagne/70">
+                {(bride as any).withLove.title}
+              </p>
+              <p className="font-display text-base text-pearl/80">
+                {(bride as any).withLove.names}
+              </p>
+            </div>
+          )}
         </Reveal>
 
         {/* Center Couple Art */}
