@@ -196,14 +196,14 @@ export default function Rsvp() {
                       htmlFor="rsvp-message"
                       className="block text-[11px] font-medium uppercase tracking-[0.2em] text-ink/70"
                     >
-                      Message or Dietary Requirements
+                      Message
                     </label>
                     <textarea
                       id="rsvp-message"
                       rows={3}
                       value={message}
                       onChange={(e) => setMessage(e.target.value)}
-                      placeholder="Special wishes for Sonali & Nayan, dietary needs..."
+                      placeholder="Special wishes for Sonali & Nayan..."
                       className="mt-1.5 w-full resize-none rounded-xl border border-ink/20 bg-white/80 px-4 py-3 text-sm text-ink placeholder:text-ink/35 focus:border-gold focus:outline-none focus:ring-2 focus:ring-gold/20"
                     />
                   </div>
